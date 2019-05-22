@@ -1,0 +1,90 @@
+table.table-fit {
+    width: auto !important;
+    table-layout: auto !important;
+}
+table.table-fit thead th, table.table-fit tfoot th {
+    width: auto !important;
+}
+table.table-fit tbody td, table.table-fit tfoot td {
+    width: auto !important;
+}
+
+table {
+    margin: 0 auto;
+}
+
+thead .group-name {
+    font-size: 1.2em;
+}
+
+.table thead th {
+    vertical-align: middle;
+    position: relative;
+    line-height: 1.8em;
+    color: white;
+    background-color: #10519c;
+}
+
+.table thead th a {
+    text-decoration: none;
+    color: white;
+}
+
+.remove-button-container {
+    /*float: right;*/
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    font-size: 1.8em;
+    color: red;
+    font-weight: bold; 
+}
+
+.edit-button-container {
+    /*float: right;*/
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    font-size: 1.8em;
+    color: white;
+    font-weight: bold;
+    padding: 0; 
+}
+
+.remove-button-container:hover, .edit-button-container:hover {
+    transform: scale(1.25);
+}
+.text {
+    color: black;
+    font-weight: bold;
+  }
+  
+  ion-select/*, .editButton*/ {
+      background-color: #10519c;
+      color: white;
+  }
+
+  /*.editButton {
+      margin: 0!important;
+      padding: 10px!important;
+      cursor: pointer;
+  }*/
+
+  td {
+    transition: ease-out 0.2s;
+  }
+  .full-width {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+  
+  .table-cups tr:not(.info-description):hover td {
+    background-color: #10519c;
+    color: white;
+    text-decoration: none;
+  }
+  .table-cups tr:not(.info-description):hover a {
+    color: white;
+    text-decoration: none;
+  }

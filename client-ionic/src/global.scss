@@ -1,0 +1,205 @@
+// http://ionicframework.com/docs/theming/
+@import '~@ionic/angular/css/core.css';
+@import '~@ionic/angular/css/normalize.css';
+@import '~@ionic/angular/css/structure.css';
+@import '~@ionic/angular/css/typography.css';
+@import '~@ionic/angular/css/display.css';
+@import '~@ionic/angular/css/padding.css';
+@import '~@ionic/angular/css/float-elements.css';
+@import '~@ionic/angular/css/text-alignment.css';
+@import '~@ionic/angular/css/text-transformation.css';
+@import '~@ionic/angular/css/flex-utils.css';
+
+.modal {
+    display: flex !important;
+    }
+
+ion-toast.notificationToast {
+    --width: 300px;
+    text-align: center;
+}
+
+/*ion-content{
+    --ion-background-color:#111D12;
+}*/
+
+.close-button-container {
+    cursor: pointer;
+    font-size: 2.5em;
+    color: red;
+    font-weight: bold; 
+  }
+
+.add-button-container {
+  cursor: pointer;
+  font-size: 3.5em;
+  /*margin-top: 0.2em;*/
+  /*color: var(--ion-color-primary);/*#3880ff;*/
+}
+
+.edit-button-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 2.5em;
+  padding: 10px;
+  color: #10519c;
+  font-weight: bold; 
+}
+
+.add-button-container:hover, .close-button-container:hover, .edit-button-container:hover, .delete-button-container:hover {
+  transform: scale(1.25);
+}
+
+ion-card:hover .cardLogo {
+  transform: scale(1.1);
+}
+
+ion-card ion-icon {
+  z-index: 5000;
+}
+
+ion-icon {
+  /*color: #BC2A2B;*/
+  /*color: #109633;*/
+}
+
+table td {
+  vertical-align: middle !important;
+}
+
+.td-min {
+  width:0.01%;
+  white-space:nowrap;
+}
+
+ion-modal.auto-height {
+  &.bottom {
+      align-items: flex-end;
+  }
+
+  --height: auto;
+
+  .ion-page {
+      position: relative;
+      display: block;
+      contain: content;
+
+      .inner-content {
+          max-height: 80vh;
+          overflow: auto;
+          padding: 10px;
+      }
+  }
+}
+
+.notificationToast { 
+  
+  .toast-message {
+    background:#10519c;;
+  }
+
+}
+
+.glyphicon-triangle-top::before {
+  content: ' \25b2';
+}
+
+.glyphicon-triangle-bottom::before {
+  content: ' \25BC';
+}
+
+.header-sort {
+  padding: 0!important;
+}
+
+mfdefaultsorter a {
+  padding: 12px;
+}
+
+mfdefaultsorter, mfdefaultsorter a {
+  display: block;
+  width: 100%;
+}
+
+.info-side-header {
+  width: 15%;
+}
+
+.info-name {
+font-size: 1.2em;
+}
+
+app-extended-select {
+  width: 100%;
+}
+
+ion-alert, .alert-head {
+  text-align: center!important;
+}
+
+.alert-button-group {
+  justify-content: center!important;
+}
+
+ion-alert .alert-title {
+  color: red!important;
+  font-weight: bold;
+}
+
+table.groupTeamTable {
+  margin-bottom: 20px!important;
+}
+
+.groupTeamTable tbody tr:last-of-type {
+  color: white!important;
+  /*background-color: rgba(0,0,0,.05)!important;*/
+}
+
+th.header-sort span {
+  display: none;
+}
+
+th.header-sort span:last-of-type {
+  display: inline;
+}
+
+.rotate {
+  transform: rotate(-90deg);
+}
+
+ion-icon.table-sort-inactive {
+  vertical-align: middle!important;
+}
+
+.title-level-separator, .title-level-up {
+  vertical-align: middle;
+}
+
+.title-level-separator {
+  margin: 0 0.4em;
+}
+
+.title-level-up {
+  position: relative;
+  bottom: 0.05em;
+}
+
+.page-title a {
+  color: white;
+  /*text-decoration: underline;*/
+}
+
+.page-title a:hover {
+  transform: scale(1.2);
+  color: white;
+  text-decoration: none;
+}
+
+.page-title a:hover .title-level-up {
+  transform: scale(1.2);
+}
+
+a {
+  text-decoration: none;
+}

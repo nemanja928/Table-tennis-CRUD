@@ -1,0 +1,46 @@
+extends partials/layout
+
+block content
+  h1= title
+  h2 Welcome to API for the Table Tennis Project
+
+  h3 List of API URI's
+  ul
+    li 
+        a(href='api/cup/') /api/cup/
+        span (GET/POST/PUT/DELETE)
+    ul
+        li /:_id (GET/PUT/DELETE)
+        ul
+            li /apply (POST)
+            li /remove (POST)
+            li /accept/:userId (POST)
+            li /decline/:userId (POST)
+        li /byName/:name (GET)
+        li /byCity/:city (GET)
+        li /byCountry/:country (GET)
+        li /byType/:type (GET)
+    li 
+        a(href='API/Companies') /API/Companies/
+        span (GET/POST)
+    ul
+        li /:_id (GET/PUT/DELETE)
+        li /byName/:name (GET)
+    li 
+        a(href='API/Roles') /API/Roles/
+        span (GET/POST)
+    ul
+        li /:_id (GET/PUT)
+    li 
+        a(href='API/Users') /API/Users/
+        span (GET/POST)
+    ul
+        li /:_id (GET/PUT)
+    li /API/Auth/ (N/A)
+    ul
+        li
+            a(href='API/Auth/Login') /Login
+            span (GET/POST)
+        li 
+            a(href='API/Auth/Register') /Register
+            span (GET/POST)

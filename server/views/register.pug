@@ -1,0 +1,40 @@
+extends partials/layout
+
+block content
+  .main-grid
+    h1= title
+    .wrapper
+      h2 Welcome to DOIT
+      
+      form.entry-form(method='post')
+        ul
+            li
+                label Name
+                input(type='text', name='name', placeholder='Name', required='', autocomplete='off', autofocus)
+            li
+                label Lastname
+                input(type='text', name='lastname', placeholder='Lastname', required='', autocomplete='off')
+            li  
+                label Username
+                input(type='text', name='username', placeholder='Username', required='', autocomplete='off')
+            li
+                label Password
+                input(type='password', name='password', placeholder='Password', required='', autocomplete='off')
+            li
+                label Email
+                input(type='text', name='email', placeholder='Email', required='', autocomplete='off')
+            li
+                label Active
+                input(type='checkbox', name='Active', placeholder='Active', required='', autocomplete='off')
+            li
+                label DoB
+                input(type='text', name='DoB', placeholder='DoB', required='', autocomplete='off')
+            li
+                label Additional Info
+                input(type='text', name='additionalInfo', placeholder='AdditionalInfo', required='', autocomplete='off')
+            li
+                label Role
+                input(type='text', name='role', placeholder='role', required='', autocomplete='off')
+        p
+            button.btn(type='submit') Register
+            //- a.forgot-pass(href='/forgot') Forgot Password?

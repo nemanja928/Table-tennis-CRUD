@@ -1,0 +1,164 @@
+<app-page-header
+  rootTitle = 'Groups'
+  rootLink = '/groups'
+  [secondLevelTitle] = 'group.name'
+  [showBar] = 'showBar'
+  [loaded] = 'loaded'
+></app-page-header>
+<ion-content text-center>
+
+  <div *ngIf='loaded'>
+
+    <div padding>
+      <table class="table table-bordered info-table">
+          <thead>
+            <tr>
+              <!-- <th class="cup-side-header">
+                Name:
+              </th> -->
+              <th colspan="2" class="info-name">
+                <ion-icon *ngIf='authService.isAdmin()' name='create' class="edit-button-container text-color" (click)='openGroupEditModal()'></ion-icon>
+                <ion-icon *ngIf='authService.isAdmin()' name='close' class="remove-button-container" (click)='deleteGroup()'></ion-icon>
+                {{ group.name }}
+              </th>
+            </tr>
+          </thead>
+          <tbody *ngIf="group.description">
+            <tr class='info-description'>
+              <td class="info-side-header">Description:</td>
+              <td>{{ group.description }}</td>
+            </tr>
+            <!-- <tr>
+              <td colspan="2">
+                <div class="editButton" (click)='openEditModal()'>EDIT CUP DETAILS</div>
+              </td>
+            </tr> -->
+          </tbody>
+        </table>
+    </div>
+
+    <ion-grid>
+
+      <ion-row>
+        
+        <ion-col size-sm='12' size-md='6'>
+          <table class='table table-bordered table-striped groupTeamTable' [mfData]="group.teams" mfSortBy="position" mfSortOrder="asc" #mf1="mfDataTable">
+            <thead>
+              <tr>
+                <th class="header-sort">
+                    <mfDefaultSorter by="position">
+                      Position
+                      <span>
+                        <ion-icon name="code" class='table-sort-inactive rotate'></ion-icon>
+                      </span>
+                    </mfDefaultSorter>
+                </th>
+                <th class="header-sort">
+                    <mfDefaultSorter by="fullName">
+                      Name
+                      <span>
+                        <ion-icon name="code" class='table-sort-inactive rotate'></ion-icon>
+                      </span>
+                    </mfDefaultSorter>
+                </th>
+                <th class="header-sort">
+                    <mfDefaultSorter by="winRatio">
+                      Win ratio
+                      <span>
+                        <ion-icon name="code" class='table-sort-inactive rotate'></ion-icon>
+                      </span>
+                    </mfDefaultSorter>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor='let team of mf1.data'>
+                <td>{{ team.winRatio ? team.position : '-' }}</td>
+                <td>
+                  <a routerLink='/teams/{{team._id}}'  class="text full-width">
+                  {{ team.fullName }}
+                  </a>
+                </td>
+                <td>{{ team.winRatio ? team.winRatio : '-' }}</td>
+              </tr>
+              <tr *ngIf='group.teams.length === 0'>
+                <td colspan='3'>There are no teams</td>
+              </tr>
+              <tr>
+                <td colspan='3' *ngIf='authService.isAdmin()'>
+                  <!-- <ion-select placeholder="Select team to add" multiple="true" cancelText="Cancel" okText="OK" 
+                  [(ngModel)]='addTeamsSelect' (ionChange)='changeTeams(group)' selectedText='Add or remove teams'>
+                    <ion-select-option *ngFor='let team of teams; let i = index' value="{{team._id}}">
+                      {{ team.name + ' ' + team.lastname }}
+                    </ion-select-option>
+                  </ion-select> -->
+                  <app-extended-select title='Select teams' [(model)]='addTeamsSelect' [items]='teams'
+                  textField='fullName' valueField='_id' [multiple]='true' placeholder='Select teams to add/remove' 
+                  selectedDisplay='Select teams to add/remove' backgroundColor='rgb(16,81,156)' textColor='white'
+                  (modelChange)='changeTeams(group)'></app-extended-select>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </ion-col>
+
+        <br>
+
+        <ion-col size-sm='12' size-md='6'>
+          <table class='table table-bordered table-striped gameScoreTable' [mfData]="group.score" #mf2="mfDataTable">
+            <thead>
+              <tr>
+                <th class="header-sort sticky-top">
+                    <mfDefaultSorter by="sortTeam1">
+                      Team 1
+                      <span>
+                        <ion-icon name="code" class='table-sort-inactive rotate'></ion-icon>
+                      </span>
+                    </mfDefaultSorter>
+                </th>
+                <th class="header-sort sticky-top">
+                    <mfDefaultSorter by="scoreString">
+                      SCORE
+                      <span>
+                        <ion-icon name="code" class='table-sort-inactive rotate'></ion-icon>
+                      </span>
+                    </mfDefaultSorter>
+                </th>
+                <th class="header-sort sticky-top">
+                    <mfDefaultSorter by="sortTeam2">
+                      Team 2
+                      <span>
+                        <ion-icon name="code" class='table-sort-inactive rotate'></ion-icon>
+                      </span>
+                    </mfDefaultSorter>
+                </th>
+                <th *ngIf='authService.isAdmin()' class="td-min sticky-top"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor='let game of mf2.data; let i = index'>
+                <td>{{ game.score[0].teamName }}</td>
+                <td>
+                  <a routerLink='/games/{{game._id}}'  class="text full-width">
+                    {{ game.scoreString }}
+                  </a>
+                </td>
+                <td>{{ game.score[1].teamName }}</td>
+                <td class='td-min' *ngIf='authService.isAdmin()'>
+                  <ion-icon class="edit color" (click)='openGameEditModal(game)' name="create" item-center></ion-icon>
+                </td>
+              </tr>
+              <tr *ngIf='group.score.length === 0'>
+                <td colspan='3'>There are no scores</td>
+              </tr>
+            </tbody>
+          </table>
+        </ion-col>
+        
+      </ion-row>
+
+    </ion-grid>
+
+  </div>
+
+</ion-content>

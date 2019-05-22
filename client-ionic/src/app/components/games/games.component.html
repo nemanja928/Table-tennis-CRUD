@@ -1,0 +1,67 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      <div text-center>List of Games</div>
+    </ion-title>
+  </ion-toolbar>
+  <ion-searchbar [(ngModel)]="searchTerm" (ionChange)="setFilteredLocation()"></ion-searchbar>
+  <ion-progress-bar type="indeterminate" *ngIf='showBar'></ion-progress-bar>
+</ion-header> -->
+
+<app-page-header
+  rootTitle = 'Games'
+  rootLink = '/games'
+  [showBar] = 'showBar'
+  [loaded] = 'loaded'
+  [showSearch] = 'true'
+  [searchTerm] = 'searchTerm'
+  (searchTermChange)='onSearchChange($event)'
+></app-page-header>
+
+<ion-content *ngIf='loaded' text-center scrollX="true" >
+  <table class="table table-bordered table-striped" [mfData]="filteredData" #mf="mfDataTable" (mfSortByChange)='sortChanged($event)'>
+    <tr *ngIf='authService.isAdmin()'>
+      <td colspan=6>
+        <div class='add-button-container hover-color' (click)='openAddModal()'>+</div>
+      </td>
+    </tr>
+    <tr>
+      <th class="sticky-top"><ion-button (click)="ScrollToTop()"><ion-icon name="arrow-up"></ion-icon> 
+      </ion-button></th>
+      <th class="header-sort sticky-top">
+        <mfDefaultSorter by="name">
+          Game name
+          <span>
+            <ion-icon name="code" class='table-sort-inactive rotate'></ion-icon>
+          </span>
+        </mfDefaultSorter>
+      </th>
+      <th class="header-sort sticky-top">
+        <mfDefaultSorter by="scoreString">
+          Score
+          <span>
+            <ion-icon name="code" class='table-sort-inactive rotate'></ion-icon>
+          </span>
+        </mfDefaultSorter>
+      </th>
+      <th class="sticky-top"><ion-button (click)="ScrollToBottom()"><ion-icon name="arrow-down"></ion-icon> 
+      </ion-button></th>
+    </tr>
+    <tr *ngFor='let game of mf.data'>
+      <td class='td-min'>
+        <ion-icon name="tennisball" class="position row-logo" item-center></ion-icon>
+      </td>
+      <td><a routerLink='/games/{{game._id}}' class="text hover-color full-width">{{ game.name }}</a></td>
+      <td class="hover-color">{{ game.scoreString }}</td>
+      <td text-center class='td-min'>
+        <!-- <ion-button color="primary" (click)='openModal(game)'>Edit</ion-button>
+        <ion-button color="danger" (click)='delete($event, game)'>Delete</ion-button> -->
+        <ion-icon *ngIf='authService.isAdmin()' class="edit color hover-color" (click)='openEditModal(game)' name="create"></ion-icon>
+        <!-- <ion-icon class="delete" color='danger' (click)='delete($event, game)' name="close"></ion-icon> -->
+      </td>
+    </tr>
+  </table>
+</ion-content>

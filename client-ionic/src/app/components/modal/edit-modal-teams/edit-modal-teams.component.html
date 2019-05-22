@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar text-center>
+    <ion-title>Edit user: {{ user.name + ' ' + user.lastname}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-icon name='close' class="close-button-container" (click)='closeModal()'></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<div class="inner-content" padding>
+  <ion-progress-bar type="indeterminate" *ngIf='working'></ion-progress-bar>
+  <ion-grid>
+    <ion-row>
+      <ion-col text-center>
+        <ion-item>
+          <ion-label position='floating'>Name</ion-label>
+          <ion-input [(ngModel)]='user.name' clearInput required #nameInput='ngModel'></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position='floating'>Last name</ion-label>
+          <ion-input [(ngModel)]='user.lastname' clearInput  required #lastNameInput='ngModel'></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position='floating'>Date of birth</ion-label>
+          <ion-datetime display-picker="MM/DD/YYYY" display-format="MM/DD/YYYY" [(ngModel)]='user.DoB' required #DoBInput='ngModel'></ion-datetime>
+        </ion-item>
+        <ion-item>
+          <ion-label position='floating'>Email</ion-label>
+          <ion-input [(ngModel)]='user.email' type='email' email clearInput required #emailInput='ngModel'></ion-input>
+        </ion-item>
+        <ion-item *ngIf='authService.getCurrentUserID() === user._id'>
+          <ion-label position='floating'>Change password</ion-label>
+          <ion-input [(ngModel)]='newPassword' type='password' clearInput #emailInput='ngModel'></ion-input>
+        </ion-item>
+        <ion-item *ngIf='authService.getCurrentUserID() === user._id'>
+          <ion-label position='floating'>Repeat new password</ion-label>
+          <ion-input [(ngModel)]='newPasswordRepeat' type='password' clearInput #emailInput='ngModel'></ion-input>
+        </ion-item>
+        <!-- <ion-item *ngIf='roles'>
+          <ion-label *ngIf='authService.isAdmin()' position='floating'>Role</ion-label>
+          <ion-select [(ngModel)]='currentRoles' multiple='true' placeholder="Select One">
+            <ion-select-option *ngFor='let role of roles' value="role._id">{{ role.name }}</ion-select-option>
+          </ion-select>
+        </ion-item> -->
+        <!-- <ion-item>
+          <ion-label position='floating'>Active</ion-label>
+          <ion-checkbox [(ngModel)]="user.active" name='active'></ion-checkbox>
+        </ion-item> -->
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col text-center>
+        <ion-button fill="clear" [disabled]='!nameInput.valid || !lastNameInput.valid || !DoBInput.valid || !emailInput.valid' (click)='saveData()'>
+            <ion-icon name='checkmark'  class="add-button-container" color='primary'></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</div>

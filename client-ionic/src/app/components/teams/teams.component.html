@@ -1,0 +1,76 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      <div text-center>List of Teams</div>
+    </ion-title>
+  </ion-toolbar>
+  <ion-searchbar [(ngModel)]="searchTerm" (ionChange)="setFilteredLocation()"></ion-searchbar>
+  <ion-progress-bar type="indeterminate" *ngIf='showBar'></ion-progress-bar>
+</ion-header> -->
+
+<app-page-header
+  rootTitle = 'Teams'
+  rootLink = '/teams'
+  [showBar] = 'showBar'
+  [loaded] = 'loaded'
+  [showSearch] = 'true'
+  [searchTerm] = 'searchTerm'
+  (searchTermChange)='onSearchChange($event)'
+></app-page-header>
+
+<ion-content *ngIf='loaded' text-center scrollX="true">
+  <table class="table table-bordered table-striped" [mfData]="filteredData" mfSortBy="fullName" mfSortOrder="asc" #mf="mfDataTable">
+    <tr *ngIf='authService.isAdmin()'>
+      <td colspan=6>
+        <div class='add-button-container hover-color' (click)='openAddModal()'>+</div>
+      </td>
+    </tr>
+    <tr>
+      <th class="sticky-top padding-zero"><ion-button (click)="ScrollToTop()"><ion-icon name="arrow-up"></ion-icon> 
+      </ion-button></th>
+      <th class="header-sort sticky-top">
+        <mfDefaultSorter by="fullName">
+          Name
+          <span>
+            <ion-icon name="code" class='table-sort-inactive rotate'></ion-icon>
+          </span>
+        </mfDefaultSorter>
+      </th>
+      <th class="header-sort sticky-top">
+        <mfDefaultSorter by="DoB">
+          Date of Birth
+          <span>
+            <ion-icon name="code" class='table-sort-inactive rotate'></ion-icon>
+          </span>
+        </mfDefaultSorter>
+      </th>
+      <!-- <th>Name</th> -->
+      <!-- <th>Date of Birth</th> -->
+      <th class="header-sort sticky-top">
+        <mfDefaultSorter by="winRatio">
+          Win Ratio
+          <span>
+            <ion-icon name="code" class='table-sort-inactive rotate'></ion-icon>
+          </span>
+        </mfDefaultSorter>
+      </th>
+      <th class="sticky-top padding-zero"><ion-button (click)="ScrollToBottom()"><ion-icon name="arrow-down"></ion-icon> 
+      </ion-button></th>
+    </tr>
+    <tr *ngFor="let user of mf.data">
+      <td class='td-min'>
+        <ion-icon name="people" class="position row-logo" item-center></ion-icon>
+      </td>
+      <td><a routerLink='/teams/{{user._id}}' class="text hover-color full-width">{{user.fullName}}</a></td>
+      <td class="hover-color">{{user.DoB | date: 'MM/dd/yyyy'}}</td>
+      <td *ngIf='user.winRatio' class="hover-color">{{user.winRatio | number: '1.2-2'}}</td>
+      <td *ngIf='!user.winRatio' class="hover-color">-</td>
+      <td text-center class='td-min'>
+        <ion-icon *ngIf='authService.isAdmin() || (authService.getCurrentUserID() === user._id)' class="edit color hover-color" (click)='openEditModal(user)' name="create"></ion-icon>
+      </td>
+    </tr>
+  </table>
+</ion-content>

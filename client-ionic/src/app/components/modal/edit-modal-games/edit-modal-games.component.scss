@@ -1,0 +1,15 @@
+.versus {
+    text-align: center;
+    font-size: 1.5em;
+}
+
+.score-container {
+    ion-label, ion-input {
+        font-size: 1.5em;
+    }
+    ion-label {
+        text-align: center;
+        position: relative;
+        left: 10px;
+    }
+}

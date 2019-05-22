@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      <div text-center>Login</div>
+    </ion-title>
+  </ion-toolbar>
+  <ion-progress-bar type="indeterminate" *ngIf='showBar'></ion-progress-bar>
+</ion-header>
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col text-center style='max-width: 30em;'>
+        <ion-item>
+          <ion-label position='floating'>Username</ion-label>
+            <ion-input (keydown.enter)='login()' placeholder='Please enter your username' [(ngModel)]='user.username' clearInput required #userName='ngModel'></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position='floating'>Password</ion-label>
+            <ion-input (keydown.enter)='login()' type='password' placeholder='Please enter your password' [(ngModel)]='user.password' clearInput required #password='ngModel'></ion-input>
+          </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col text-center padding>
+        <ion-button (click)='login()' [disabled]='!userName.valid || !password.valid'>LOGIN</ion-button>
+        <a routerLink="/register">- Register Here -</a>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

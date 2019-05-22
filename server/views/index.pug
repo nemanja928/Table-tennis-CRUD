@@ -1,0 +1,64 @@
+extends partials/layout
+
+block content
+  h1= title
+  h2 Welcome to API for the Table Tennis Project
+
+  h3 List of API URI's #[strong http://localhost:3000]
+  ul
+    li #[strong /api (GET)]
+        ul
+            li /renderIndex (GET)
+    li #[strong /api/cup (GET/POST)]
+        ul
+            li /getCups (GET)
+            li /createCup (POST)
+    ul
+        li #[strong /:_id (GET/PUT/DELETE)]
+        ul
+            li /getCupById (GET)
+            li /updateCup (PUT)
+            li /deleteCup (DELETE)
+    li #[strong /api/game (GET/POST)]
+        ul
+            li /getGames (GET)
+            li /createGame (POST)
+    ul
+        li #[strong /:_id (GET/PUT/DELETE)]
+        ul
+            li /getGameById (GET)
+            li /updateGame (PUT)
+            li /deleteGame (DELETE)
+    li #[strong /api/group (GET/POST)]
+        ul
+            li /getGroups (GET)
+            li /createGroup (POST)
+    ul
+        li #[strong /:_id (GET/PUT/DELETE)]
+        ul
+            li /getGroupById (GET)
+            li /updateGroup (PUT)
+            li /deleteGroup (DELETE)
+    li #[strong /api/roles (GET/POST)]
+        ul
+            li /getRole (GET)
+            li /createRole (POST)
+    ul
+        li #[strong /:_id (GET/PUT/DELETE)]
+        ul
+            li /getRolebyId (GET)
+            li /updateRole (PUT)
+    li #[strong /api/users (GET/POST)]
+        ul
+            li /getUsers (GET)
+            li /createUser (POST)
+    ul
+        li #[strong /:_id (GET/PUT/DELETE)]
+        ul
+            li /getUserById (GET)
+            li /getUserByRole (GET)
+            li /updateUser (PUT)
+    li #[strong /api/auth (GET/POST)]
+    ul
+        li /Login (GET/POST)
+        li /Register (GET/POST)

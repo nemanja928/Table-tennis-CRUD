@@ -1,0 +1,142 @@
+<app-page-header
+  rootTitle = 'Cups'
+  rootLink = '/cups'
+  [secondLevelTitle] = 'cup.name'
+  [showBar] = 'showBar'
+  [loaded] = 'loaded'
+></app-page-header>
+
+<ion-content text-center>
+
+  <div *ngIf='loaded'>
+
+    <div padding>
+      <table class="table table-bordered">
+          <thead>
+            <tr>
+              <!-- <th class="cup-side-header">
+                Name:
+              </th> -->
+              <th colspan="2" class="info-name">
+                <ion-icon *ngIf='authService.isAdmin()' name='create' class="edit-button-container text-color" (click)='openCupEditModal()'></ion-icon>
+                <ion-icon *ngIf='authService.isAdmin()' name='close' class="remove-button-container" (click)='deleteCup()'></ion-icon>
+                {{ cup.name }}
+              </th>
+            </tr>
+          </thead>
+          <tbody *ngIf="cup.description">
+            <tr class='info-description'>
+              <td class="info-side-header">Description:</td>
+              <td>{{ cup.description }}</td>
+            </tr>
+            <!-- <tr>
+              <td colspan="2">
+                <div class="editButton" (click)='openEditModal()'>EDIT CUP DETAILS</div>
+              </td>
+            </tr> -->
+          </tbody>
+        </table>
+    </div>
+
+    
+    
+    <!-- <table class='table table-bordered table-fit'>
+      <tr *ngIf='cup.winner'>
+        <td>WINNER</td><td><a routerLink='/teams/{{cup.winner._id}}'>{{ cup.winner.name + ' ' + cup.winner.lastname }}</a></td>
+      </tr>
+      <tr *ngIf='cup.second'>
+        <td>SECOND PLACE</td><td><a routerLink='/teams/{{cup.second._id}}'>{{ cup.second.name + ' ' + cup.second.lastname }}</a></td>
+      </tr>
+      <tr *ngIf='cup.third'>
+        <td>THIRD PLACE</td><td><a routerLink='/teams/{{cup.third._id}}'>{{ cup.third.name + ' ' + cup.third.lastname }}</a></td>
+      </tr>
+    </table> -->
+
+    
+
+    <ion-grid>
+      <ion-row *ngIf='cup.groups'>
+        <ion-col *ngFor='let group of cup.groups; let groupIndex = index' size-xs='12' size-lg='6'>
+          
+          <table class='table table-bordered table-striped table-cups  groupTeamTable' [mfData]="group.teams" mfSortBy="position" mfSortOrder="asc" #mf="mfDataTable">
+            <thead>
+              <tr class='group-name'>
+                <th colspan='3'>
+                    <a routerLink='/groups/{{group._id}}'>{{ group.name }}</a>
+                    <ion-icon *ngIf='authService.isAdmin()' name='close' class="remove-button-container" (click)='removeGroup(group)'></ion-icon>
+                </th>
+              </tr>
+              <tr *ngIf='group.description' class='info-description'>
+                <td colspan='3'>
+                    {{ group.description }}
+                </td>
+              </tr>
+              <tr>
+                <th class="header-sort">
+                    <mfDefaultSorter by="position">
+                      Position
+                      <span>
+                        <ion-icon name="code" class='table-sort-inactive rotate'></ion-icon>
+                      </span>
+                    </mfDefaultSorter>
+                </th>
+                <th class="header-sort">
+                    <mfDefaultSorter by="fullName">
+                      Name
+                      <span>
+                        <ion-icon name="code" class='table-sort-inactive rotate'></ion-icon>
+                      </span>
+                    </mfDefaultSorter>
+                </th>
+                <th class="header-sort">
+                    <mfDefaultSorter by="winRatio">
+                      Win ratio
+                      <span>
+                        <ion-icon name="code" class='table-sort-inactive rotate'></ion-icon>
+                      </span>
+                    </mfDefaultSorter>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor='let team of mf.data'>
+                <td>{{ team.winRatio ? team.position : '-' }}</td>
+                <td>
+                  <a routerLink='/teams/{{team._id}}'  class="text full-width">
+                  {{ team.fullName }}
+                  </a>
+                </td>
+                <td>{{ team.winRatio ? team.winRatio : '-' }}</td>
+              </tr>
+              <tr *ngIf='group.teams.length === 0'>
+                  <td colspan='3'>There are no teams</td>
+                </tr>
+              <tr>
+                <td colspan='3' *ngIf='authService.isAdmin()'>
+                  <!-- <ion-select placeholder="Select team to add" multiple="true" cancelText="Cancel" okText="OK" 
+                  [(ngModel)]='addTeamsSelect[groupIndex]' (ionChange)='changeTeams(group, groupIndex)'  selectedText='Add or remove teams'>
+                    <ion-select-option *ngFor='let team of teams; let i = index' value="{{team._id}}">{{ team.name + ' ' + team.lastname }}
+                    </ion-select-option>
+                  </ion-select> -->
+                  <app-extended-select title='Select teams' [(model)]='addTeamsSelect[groupIndex]' [items]='teams'
+                  textField='fullName' valueField='_id' [multiple]='true' placeholder='Select teams to add/remove' 
+                  selectedDisplay='Select teams to add/remove' backgroundColor='rgb(16,81,156)' textColor='white'
+                  (modelChange)='changeTeams(group, groupIndex)'></app-extended-select>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+        </ion-col>
+      </ion-row>
+      <ion-row *ngIf='!cup.groups.length' text-center>
+        <ion-col>
+          This cup has no groups yet.
+          <br><br>
+          <ion-button (click)='openCupEditModal()'>ADD GROUPS</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+</ion-content>

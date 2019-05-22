@@ -1,0 +1,83 @@
+table {
+  margin: 0 auto;
+}
+.full-width {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.edit {
+  cursor: pointer;
+  font-size: 2.5em;
+
+  padding: 10px;
+}
+
+.edit:hover {
+  transform: scale(1.25);
+}
+
+.color {
+  color: #10519c;
+}
+
+.text {
+  color: black;
+  font-weight: bold;
+}
+.table thead th {
+  color: white;
+  background-color: #10519c;
+  vertical-align: middle;
+  line-height: 1.8em;
+}
+.info-table thead th {
+  position: relative;
+}
+
+td {
+  transition: ease-out 0.2s;
+}
+
+tr:not(.info-description):hover td {
+  background-color: #10519c;
+  color: white;
+}
+tr:not(.info-description):hover a, tr:not(.info-description):hover .edit {
+  color: white;
+  text-decoration: none;
+}
+
+.gameScoreTable ion-icon {
+  padding: 0!important;
+  vertical-align: middle!important;
+}
+
+.remove-button-container {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  font-size: 1.8em;
+  color: red;
+  font-weight: bold; 
+}
+
+.edit-button-container {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  font-size: 1.8em;
+  color: white;
+  font-weight: bold;
+  padding: 0; 
+}
+
+.remove-button-container:hover, .edit-button-container:hover {
+  transform: scale(1.25);
+}
+
+.groupTeamTable tbody tr:last-of-type {
+  color: white!important;
+  /*background-color: rgba(0,0,0,.05)!important;*/
+}

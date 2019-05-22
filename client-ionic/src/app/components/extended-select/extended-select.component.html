@@ -1,0 +1,36 @@
+<ionic-selectable
+  #selectableComponent
+  [(ngModel)]='model'
+  [items]="items"
+  [itemValueField]="valueField"
+  [itemTextField]="textField"
+
+  (onChange)="valueChange($event)"
+
+  [isMultiple]="multiple"
+  [placeholder]='placeholder'
+  [canSearch]="true"
+>
+  <ng-template ionicSelectableHeaderTemplate>
+    <ion-toolbar text-center>
+      <ion-title>{{ title }}</ion-title>
+      <ion-buttons slot="end">
+          <ion-icon name='close' class="close-button-container" (click)='selectableComponent.close()'></ion-icon>
+      </ion-buttons>
+    </ion-toolbar>
+  </ng-template>
+  <ng-template ionicSelectableValueTemplate let-values="value">
+    <div class="ionic-selectable-value-item">
+      {{formatSelectedValues(values)}}
+    </div>
+  </ng-template>
+  <ng-template ionicSelectableFooterTemplate>
+    <ion-grid>
+      <ion-row>
+        <ion-col text-center>
+          <ion-icon name='checkmark' class="add-button-container" color='primary' (click)='confirmSelect()'></ion-icon>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ng-template>
+</ionic-selectable>

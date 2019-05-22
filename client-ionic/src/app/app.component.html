@@ -1,0 +1,58 @@
+<ion-app>
+  <ion-split-pane>
+    <ion-menu>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>
+            <div text-center>Menu</div>
+          </ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <ion-list>
+          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
+            <ion-item routerLink="{{p.url}}" routerLinkActive="active-link" class="hover">
+              <ion-icon slot="start" [name]="p.icon"></ion-icon>
+              <ion-label>
+                {{p.title}}
+              </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+      </ion-content>
+      <!-- <ion-img class='large-image' src="../assets/img/tt.png"></ion-img> -->
+      <ion-img class='large-image' *ngIf='routeImage("/cups")' src='{{appPages[0].img}}'></ion-img>
+      <ion-img class='large-image' *ngIf='routeImage("/groups")' src='{{appPages[1].img}}'></ion-img>
+      <ion-img class='large-image' *ngIf='routeImage("/teams")' src='{{appPages[2].img}}'></ion-img>
+      <ion-img class='large-image' *ngIf='routeImage("/games")' src='{{appPages[3].img}}'></ion-img>
+      <ion-img class='large-image' *ngIf='routeImage("/login")' src='../assets/img/tt.png'></ion-img>
+      <ion-img class='large-image' *ngIf='routeImage("/register")' src='../assets/img/tt.png'></ion-img>
+      <ion-footer class="bar-stable">
+          <ion-menu-toggle auto-hide="false">
+        <div *ngIf='!authService.isLoggedIn()'>
+          
+          <ion-item nav-clear menu-close routerLink='/login'>
+            <ion-icon slot='start' name="log-in"></ion-icon>
+            <ion-label>Login</ion-label>
+          </ion-item>
+          <ion-item nav-clear menu-close routerLink="/register">
+            <ion-icon slot='start' name="person-add"></ion-icon>
+            <ion-label>Register</ion-label>
+          </ion-item>
+        </div>
+        <ion-item *ngIf='authService.isLoggedIn()' style="cursor:pointer" nav-clear menu-close
+          routerLink='/teams/{{authService.getCurrentUserID()}}'>
+          <ion-icon slot='start' name="people"></ion-icon>
+          <ion-label>My Profile ({{ authService.getCurrentUsername() }})</ion-label>
+        </ion-item>
+        <ion-item *ngIf='authService.isLoggedIn()' style="cursor:pointer" nav-clear menu-close
+          (click)='authService.logoutUser()'>
+          <ion-icon slot='start' name="log-out"></ion-icon>
+          <ion-label>Logout</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+      </ion-footer>
+    </ion-menu>
+    <ion-router-outlet main></ion-router-outlet>
+  </ion-split-pane>
+</ion-app>

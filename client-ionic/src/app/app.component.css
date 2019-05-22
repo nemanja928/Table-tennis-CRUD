@@ -1,0 +1,52 @@
+/*ion-menu ion-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/*
+ion-menu ion-content {
+    flex-shrink: 0 !important;
+}*/
+
+.large-image {
+    width: 100%;
+    height: 40%;
+} 
+
+ion-menu ion-footer {
+    --ion-background-color: #10519c;
+    --ion-text-color: white;
+}
+/* 
+ion-list {
+    --ion-background-color: #10519c;
+    --ion-text-color: white;
+}
+*/
+ion-list ion-icon {
+    color: #10519c;
+    transition: ease-out 0.35s;
+}
+
+.hover:hover ion-icon {
+    transform: scale(1.8);
+}
+
+.active-link {
+  /* --background: linear-gradient(
+    to left,
+    rgba(255, 255, 255, 0),
+    #10519c
+  ), url('/assets/img/reket.jpg'); */
+    --ion-background-color: #10519c;
+    --ion-text-color:white;
+}
+.active-link ion-icon{
+    color:white;
+}
+@media only screen and (max-height: 550px) {
+    ion-img {
+        display: none;
+    }
+  }

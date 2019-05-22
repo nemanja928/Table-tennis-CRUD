@@ -1,0 +1,92 @@
+.delete {
+    cursor: pointer;
+    font-size: 2.5em;
+    
+    padding: 10px;
+    
+  }
+  
+  .edit {
+    cursor: pointer;
+    font-size: 2.5em;
+  
+    padding: 10px;
+  }
+  .edit:hover {
+    transform: scale(1.25);
+  }
+
+  .delete:hover {
+    transform: scale(1.25);
+  }
+
+  .color {
+      color: #10519c;
+  }
+  .position {
+    /*position: absolute;
+    left: 1%;*/
+    font-size: 2em;
+    color: #BC2A2B;
+}
+
+.text {
+    color: black;
+    font-weight: bold;
+
+}
+
+.add-button-container {
+  cursor: pointer;
+  font-size: 2.5em;
+  line-height: 1.1;
+  color: #10519c;
+}
+
+tr:hover .row-logo {
+  transform: scale(1.1);
+}
+
+td {
+  /*padding: 6px;*/
+  /*font-size: 1.1em;*/
+  transition: ease-out 0.2s;
+}
+
+tr:hover td {
+    background-color: #10519c;
+}
+
+tr:hover .hover-color {
+    color: white;
+    text-decoration: none;
+}
+th {
+    background-color: #10519c;
+    color: white;
+}
+
+ion-icon {
+  padding: 0!important;
+  vertical-align: middle!important;
+}
+
+.full-width {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.sticky-top {
+  padding: 0;
+}
+.scroll-top-icon {
+  transform: rotate(-90deg);
+}
+.scroll-bottom-icon {
+  transform: rotate(90deg);
+}
+@media only screen and (max-width: 450px) {
+  .display-none {
+    display: none;
+  }
+}   

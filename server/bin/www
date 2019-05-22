@@ -1,0 +1,60 @@
+process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+
+var mid = require('../public/config/middlewares/base/middlewaresBase'),
+    express = require('express'),
+    http = require('http'),
+    config = require('./../public/config/constants/constants'),
+    app = express();
+
+var port = normalizePort(process.env.PORT || config.port);
+app.set('port', port);
+app.use(mid.configuration);
+
+var server = http.createServer(app);
+
+server = app.listen(port);
+server.on('error', onError);
+server.on('listening', onListening);
+
+/**
+ * Normalize port
+ * @param {*} val 
+ */
+function normalizePort(val) {
+    var port = typeof val === 'string' ? parseInt(val, 10) : val;
+    if (isNaN(port)) return val;
+    else if (port >= 0) return port;
+    else return false;
+}
+
+/**
+ * On error
+ * callback event for createServer error
+ * @param {*} error 
+ */
+function onError(error) {
+    if (error.syscall !== 'listen') throw error;
+    var bind = (typeof port === 'string') ? 'Pipe ' + port : 'Port ' + port;
+    switch (error.code) {
+        case 'EACCES':
+            console.error('requires elevated privileges', bind);
+            process.exit(1);
+            break;
+        case 'EADDRINUSE':
+            console.error('is already in use', bind);
+            process.exit(1);
+            break;
+        default:
+            throw error;
+    }
+}
+
+/**
+ * On listening
+ * callback event for createServer listening
+ */
+function onListening() {
+    var addr = server.address();
+    var bind = (typeof addr === 'string') ? `pipe ${addr}` : addr.port;
+    console.info(process.env.NODE_ENV + ' server running @ http://localhost:', bind);
+}

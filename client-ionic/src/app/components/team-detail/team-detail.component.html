@@ -1,0 +1,76 @@
+<app-page-header
+  rootTitle = 'Teams'
+  rootLink = '/teams'
+  [secondLevelTitle] = 'user.fullName'
+  [showBar] = 'showBar'
+  [loaded] = 'loaded'
+></app-page-header>
+
+<ion-content *ngIf='loaded'>
+
+<div padding>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <!-- <th class="cup-side-header">
+          Name:
+        </th> -->
+        <th class="info-name">
+          <ion-icon *ngIf='authService.isAdmin() || (authService.getCurrentUserID() === user._id)' name='create' class="edit-button-container text-color" (click)='openTeamEditModal()'></ion-icon>
+          {{user.name + ' ' + user.lastname}}
+        </th>
+      </tr>
+    </thead>
+  </table>
+</div>
+
+<ion-grid>
+  <ion-row>
+    <ion-col size-xs='12' size-md='6'>
+      <table class="table table-striped table-bordered text-center">
+        <tr>
+          <td><strong>First Name: </strong></td>
+          <td>{{user.name}}</td>
+        </tr>
+        <tr>
+          <td><strong>Last Name: </strong></td>
+          <td>{{user.lastname}}</td>
+        </tr>
+        <tr>
+          <td><strong>Username: </strong></td>
+          <td>{{user.username}}</td>
+        </tr>
+        <tr *ngIf='user.winRatio'>
+          <td><strong>Win Ratio: </strong></td>
+          <td>{{user.winRatio | number: '1.2-2'}}</td>
+        </tr>
+        <tr *ngIf='!user.winRatio'>
+          <td><strong>Win Ratio: </strong></td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td><strong>Date Of Birth: </strong></td>
+          <td>{{user.DoB | date: 'MM/dd/yyyy'}}</td>
+        </tr>
+        <tr>
+          <td><strong>E-mail: </strong></td>
+          <td>{{user.email}}</td>
+        </tr>
+      </table>
+    </ion-col>
+    <ion-col size-xs='12' size-md='6'>
+      <table class="table table-striped table-bordered text-center">
+        <tr>
+          <th>Games</th>
+        </tr>
+        <tr *ngFor='let game of user.games; let i=index'>
+            <td>
+              <a routerLink='/games/{{game._id}}' class="text">{{game.name}}</a>
+            </td>
+        </tr>
+      </table>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+</ion-content>

@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar text-center>
+    <ion-title>Add new cup</ion-title>
+    <ion-buttons slot="end">
+        <ion-icon name='close' class="close-button-container" (click)='closeModal()'></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<div class="inner-content" padding>
+  <ion-progress-bar type="indeterminate" *ngIf='working'></ion-progress-bar>
+  <ion-grid>
+    <ion-row>
+      <ion-col text-center>
+        <ion-item>
+          <ion-label position='floating'>Name</ion-label>
+            <ion-input [(ngModel)]='cup.name' clearInput required #cupName='ngModel'></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position='floating'>Description</ion-label>
+            <ion-textarea [(ngModel)]='cup.description' clearInput></ion-textarea>
+          </ion-item>
+          <ion-item>
+            <ion-label position='floating'>Groups</ion-label>
+            <!-- <ion-select [(ngModel)]='cup.groups' multiple="true" cancelText="CANCEL" okText="OK">
+              <ion-select-option *ngFor='let group of groups' value='{{group._id}}'>{{ group.name }}</ion-select-option>
+            </ion-select> -->
+            
+            <app-extended-select title='Select groups' [(model)]='cup.groups' [items]='groups' 
+            textField='name' valueField='_id' [multiple]='true'></app-extended-select>
+
+          </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col text-center>
+        <ion-item>
+            <ion-label position='floating'>Active</ion-label>
+          <ion-checkbox [(ngModel)]="cup.active"></ion-checkbox>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col text-center>
+        <ion-button fill="clear" [disabled]='!cupName.valid' (click)='addCup()'>
+            <ion-icon name='checkmark'  class="add-button-container" color='primary'></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</div>

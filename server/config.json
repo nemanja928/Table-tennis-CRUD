@@ -1,0 +1,16 @@
+{
+    "development": {
+        "username": "danilo",
+        "password": "ttenlight123",
+        "database": "tt-enlightit",
+        "host": "mlab",
+        "dialect": "mongoDB"
+    },
+    "production": {
+        "username": "update me",
+        "password": "update me",
+        "database": "update me",
+        "host": "update me",
+        "dialect": "update me"
+    }
+}

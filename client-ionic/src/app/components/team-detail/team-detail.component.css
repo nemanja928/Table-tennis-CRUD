@@ -1,0 +1,27 @@
+.text {
+    color: black;
+}
+
+table {
+    margin: 0 auto;
+}
+
+.table thead th {
+    color: white;
+    background-color: #10519c;
+    vertical-align: middle;
+    position: relative;
+    line-height: 1.8em;
+    text-align: center;
+  }
+
+  .edit-button-container {
+    /*float: right;*/
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    font-size: 1.8em;
+    color: white;
+    font-weight: bold;
+    padding: 0; 
+}

@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar text-center>
+    <ion-title>Add new group</ion-title>
+    <ion-buttons slot="end">
+      <ion-icon name='close' class="close-button-container" (click)='closeModal()'></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<div class="inner-content" padding>
+  <ion-progress-bar type="indeterminate" *ngIf='working'></ion-progress-bar>
+  <ion-grid>
+    <ion-row>
+      <ion-col text-center>
+        <ion-item>
+          <ion-label position='floating'>Name</ion-label>
+            <ion-input [(ngModel)]='group.name' clearInput required #groupName='ngModel'></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position='floating'>Description</ion-label>
+            <ion-textarea [(ngModel)]='group.description' clearInput></ion-textarea>
+          </ion-item>
+          <ion-item>
+            <ion-label position='floating'>Teams</ion-label>
+            <app-extended-select title='Select teams' [(model)]='group.teams' [items]='teams' 
+            textField='fullName' valueField='_id' [multiple]='true' formatField='fullName'></app-extended-select>
+          </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col text-center>
+        <ion-button fill="clear" [disabled]='!groupName.valid' (click)='addGroup()'>
+            <ion-icon name='checkmark'  class="add-button-container" color='primary'></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</div>

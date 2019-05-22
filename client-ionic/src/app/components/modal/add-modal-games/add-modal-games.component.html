@@ -1,0 +1,63 @@
+<ion-header>
+    <ion-toolbar text-center>
+      <ion-title>Add new game</ion-title>
+      <ion-buttons slot="end">
+        <ion-icon name='close' class="close-button-container" (click)='closeModal()'></ion-icon>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  
+  <div class="inner-content" padding>
+    <ion-progress-bar type="indeterminate" *ngIf='working'></ion-progress-bar>
+    <ion-grid>
+      <ion-row>
+        <ion-col text-center>
+          <ion-item>
+            <ion-label position='floating'>Name</ion-label>
+              <ion-input [(ngModel)]='name' clearInput required #gameInput='ngModel'></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position='floating'>Description</ion-label>
+              <ion-textarea [(ngModel)]='description' clearInput></ion-textarea>
+            </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row padding>
+        <ion-col size-xs="12" size-sm="5">
+          <ion-item>
+            <app-extended-select 
+            class='versus' title='Select team' [(model)]='team1' [items]='teams1' (selected)='onSelect($event, teams2)'
+            textField='fullName' valueField='_id' [multiple]='false' placeholder='Team 1'>
+            </app-extended-select>
+            <input type='hidden' [ngModel]='team1' required #team1Input='ngModel'>
+          </ion-item>
+            <!-- <ion-select [(ngModel)]='team1' cancelText="CANCEL" okText="OK"  placeholder='Team 1'  (ionChange)="constructGameName()">
+              <ion-select-option *ngFor='let team of teams' value='{{team._id}}'>{{ team.name }} {{ team.lastname }}</ion-select-option>
+            </ion-select> -->
+        </ion-col>
+        <ion-col size-xs="12" size-sm="2" class="versus" align-self-center>
+          VS
+        </ion-col>
+        <ion-col size-xs="12" size-sm="5">
+            <ion-item>
+                <app-extended-select 
+                class='versus' title='Select team' [(model)]='team2' [items]='teams2' (selected)='onSelect($event, teams1)'
+                textField='fullName' valueField='_id' [multiple]='false' placeholder='Team 2'>
+                </app-extended-select>
+                <input type='hidden' [ngModel]='team2' required #team2Input='ngModel'>
+            </ion-item>
+            <!-- <ion-select [(ngModel)]='team2' cancelText="CANCEL" okText="OK" placeholder='Team 2' (ionChange)="constructGameName()">
+              <ion-select-option *ngFor='let team of teams' value='{{team._id}}'>{{ team.name }} {{ team.lastname }}</ion-select-option>
+            </ion-select> -->
+            
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col text-center>
+          <ion-button fill="clear" [disabled]='!team1Input.valid || !team2Input.valid || !gameInput.valid' (click)='addGame()'>
+              <ion-icon name='checkmark'  class="add-button-container" color='primary'></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>

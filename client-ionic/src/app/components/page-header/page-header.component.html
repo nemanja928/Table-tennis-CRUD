@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title *ngIf='!secondLevelTitle'>
+      <div text-center>{{ rootTitle }}</div>
+    </ion-title>
+    <ion-title class='page-title' text-center *ngIf='secondLevelTitle'>
+      <a routerLink='{{rootLink}}'><ion-icon name="arrow-up" class='title-level-up'></ion-icon>{{ rootTitle }}</a><!--
+        --><ion-icon name="arrow-forward" class='title-level-separator'></ion-icon>
+      <span *ngIf="loaded">{{ secondLevelTitle }}</span>
+      <span *ngIf="!loaded">Loading...</span>
+    </ion-title>
+  </ion-toolbar>
+  <ion-searchbar *ngIf='showSearch' [(ngModel)]="searchTerm" (ionChange)="onSearchChange()"></ion-searchbar>
+  <ion-progress-bar type="indeterminate" *ngIf='showBar'></ion-progress-bar>
+</ion-header>

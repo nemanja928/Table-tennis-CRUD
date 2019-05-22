@@ -1,0 +1,8 @@
+extends partials/layout
+
+block content
+  h1= title
+  ul
+  each val in user
+    li
+        a(href='/Api/Users/' + val._id)= val._id

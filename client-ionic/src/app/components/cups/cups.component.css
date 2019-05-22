@@ -1,0 +1,83 @@
+a {
+  text-decoration: none;
+}
+
+/* card */
+
+ion-card {
+  min-height: 14em!important;
+  height: 100%;
+  /*min-width: 100%;*/
+  color: #10519c;
+  -webkit-transition: ease-out 0.4s;
+  -moz-transition: ease-out 0.4s;
+  transition: ease-out 0.4s;
+}
+
+ion-card:hover {
+ color: white;
+  background-color: #10519c;
+}
+ion-card:hover .text-color {
+  color: white;
+}
+
+ion-card-content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+ion-card-title, ion-card-subtitle {
+  padding: 10px 20px;
+}
+
+.cardLogo {
+  font-size: 5em;
+}
+
+/* buttons */
+
+.add-button-container {
+  cursor: pointer;
+  width: 100%;
+  /*height: 100%;*/
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 5em;
+  color: var(--ion-color-primary);/*#3880ff;*/
+}
+
+.delete-button-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 2.5em;
+  padding: 10px;
+  color: red;
+  font-weight: bold; 
+}
+
+.edit-button-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 2.5em;
+  padding: 10px;
+  color: #10519c;
+  font-weight: bold; 
+}
+
+.edit-button-container:hover, .delete-button-container:hover {
+  transform: scale(1.25);
+}
+
+.add-button-container:hover {
+  font-size: 6em;
+}
+
+ion-icon {
+  z-index: 5;
+}
+
